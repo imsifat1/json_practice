@@ -12,7 +12,7 @@ class newsServices {
   static Future<List<NewsModel>> getNews() async {
     try {
       var response = await http.get(api);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         var decode = jsonDecode(response.body);
         newsModel = newsModelFromJson(decode);
         return newsModel;

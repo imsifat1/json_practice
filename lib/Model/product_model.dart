@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final newsModel = newsModelFromJson(jsonString);
+//     final productModel = productModelFromJson(jsonString);
 
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-product_model productModelFromJson(String str) =>
-    product_model.fromJson(json.decode(str));
+ProductModel productModelFromJson(String str) =>
+    ProductModel.fromJson(json.decode(str));
 
-String productModelToJson(product_model data) => json.encode(data.toJson());
+String productModelToJson(ProductModel data) => json.encode(data.toJson());
 
-class product_model {
-  product_model({
+class ProductModel {
+  ProductModel({
     required this.currentPage,
     required this.data,
     required this.firstPageUrl,
@@ -32,24 +32,24 @@ class product_model {
   final int from;
   final int lastPage;
   final String lastPageUrl;
-  final dynamic nextPageUrl;
+  final String nextPageUrl;
   final String path;
   final int perPage;
   final dynamic prevPageUrl;
   final int to;
   final int total;
 
-  factory product_model.fromJson(Map<String, dynamic> json) => product_model(
+  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         currentPage: json["current_page"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
-        lastPageUrl: json["last_page_url"],
+        lastPageUrl: json["last_pa"],
         nextPageUrl: json["next_page_url"],
         path: json["path"],
         perPage: json["per_page"],
-        prevPageUrl: json["prev_page_url"],
+        prevPageUrl: json["prev_page_"],
         to: json["to"],
         total: json["total"],
       );
@@ -74,68 +74,6 @@ class Datum {
   Datum({
     required this.id,
     required this.name,
-    required this.slug,
-    required this.iconImage,
-    required this.categoryImge,
-    required this.isSelected,
-    required this.status,
-    required this.isSerialize,
-    required this.caption,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.products,
-  });
-
-  final int id;
-  final String name;
-  final String slug;
-  final dynamic iconImage;
-  final String categoryImge;
-  final int isSelected;
-  final int status;
-  final int isSerialize;
-  final String caption;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final List<Product> products;
-
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["id"],
-        name: json["name"],
-        slug: json["slug"],
-        iconImage: json["icon_image"],
-        categoryImge:
-            json["category_imge"] == null ? null : json["category_imge"],
-        isSelected: json["is_selected"],
-        status: json["status"],
-        isSerialize: json["isSerialize"] == null ? null : json["isSerialize"],
-        caption: json["caption"] == null ? null : json["caption"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        products: List<Product>.from(
-            json["products"].map((x) => Product.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "slug": slug,
-        "icon_image": iconImage,
-        "category_imge": categoryImge == null ? null : categoryImge,
-        "is_selected": isSelected,
-        "status": status,
-        "isSerialize": isSerialize == null ? null : isSerialize,
-        "caption": caption == null ? null : caption,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-        "products": List<dynamic>.from(products.map((x) => x.toJson())),
-      };
-}
-
-class Product {
-  Product({
-    required this.id,
-    required this.name,
     required this.price,
     required this.salePrice,
     required this.slug,
@@ -153,7 +91,7 @@ class Product {
   final String thumnail;
   final List<ProductImage> productImage;
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         name: json["name"],
         price: json["price"],

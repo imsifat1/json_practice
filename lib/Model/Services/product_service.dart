@@ -1,25 +1,28 @@
-import 'dart:convert';
+// import 'dart:convert';
 
-import 'package:api_practice/Model/product_model.dart';
-import 'package:http/http.dart' as http;
+// import 'package:api_practice/Model/product_model.dart';
+// import 'package:api_practice/main.dart';
+// import 'package:http/http.dart' as http;
 
-class product_service {
-  static Future<List<product_model>> getProduct() async {
-    var productModel;
-    var api = Uri.parse("https://www.moharaj.com.bd/api/only/category");
-    try {
-      var response = await http.get(api);
-      if (response.statusCode == 200) {
-        var decode = jsonDecode(response.body);
+// Future<List<ProductModel>> getProduct() async {
+//   Uri api = Uri.parse("https://www.moharaj.com.bd/api/new/collection/products");
+//   List<ProductModel> newList;
+//   try {
+//     final response = await http.get(api);
+//     if (response.statusCode == 200 || response.statusCode == 201) {
+//       final decode = jsonDecode(response.body);
+//       List productModel = decode["data"];
+//       newList = productModel
+//           .map((jsonData) => ProductModel.fromJson(jsonData))
+//           .toList();
 
-        productModel = productModelFromJson(decode);
+//       print(response.body);
 
-        return productModel;
-      } else {
-        return productModel;
-      }
-    } catch (error) {
-      return <product_model>[];
-    }
-  }
-}
+//       return newList;
+//     } else {
+//       return <ProductModel>[];
+//     }
+//   } catch (e) {
+//     return <ProductModel>[];
+//   }
+// }
